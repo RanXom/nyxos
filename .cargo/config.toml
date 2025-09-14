@@ -1,0 +1,10 @@
+[build]
+# Set the default target for this project
+target = "riscv64gc-unknown-none-elf"
+# Pass the linker script to rustc
+rustflags = ["-Clink-arg=-Tsrc/lds/virt.lds"]
+
+[target.riscv64gc-unknown-none-elf]
+# This command runs when you type 'cargo run'
+# NOTE: The space after '-kernel' is important! Cargo appends the executable path there.
+runner = "qemu-system-riscv64 -machine virt -cpu rv64 -smp 4 -m 128M -drive if=none,format=raw,file=hdd.dsk,id=foo -device virtio-blk-pci,drive=foo -nographic -serial mon:stdio -bios none -device virtio-rng-pci -device virtio-net-pci -device virtio-tablet-pci -device virtio-keyboard-pci -kernel "

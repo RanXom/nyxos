@@ -1,6 +1,10 @@
 [package]
 name = "nyxos"
 version = "0.1.0"
+authors = ["RanXom"]
 edition = "2024"
+
+[lib]
+crate-type = ["staticlib"]
 
 [dependencies]
